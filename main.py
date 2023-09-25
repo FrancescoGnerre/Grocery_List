@@ -15,7 +15,7 @@ class Item(db.Model):
         return '<Task %r>' % self.item_id
 
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def home():
     return render_template('home.html')
 
