@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -17,7 +17,18 @@ class Item(db.Model):
 
 @app.route('/', methods=["GET", "POST"])
 def home():
-    return render_template('home.html')
+    if request.method == "POST":
+        item_new = request.form['new_item']
+        new_item_DB = Item(item_name=item_new)
+
+        try:
+            db.session.add(new_item_DB)
+            db.session.commit
+            return redirect('/')
+        except:
+            return "Failed to find"
+    else:
+        return render_template('home.html')
 
 
 if __name__ == "__main__":
