@@ -19,16 +19,17 @@ class Item(db.Model):
 def home():
     if request.method == "POST":
         item_new = request.form['new_item']
-        new_item_DB = Item(item_name=item_new)
+        new_item_db = Item(item_name=item_new)
 
         try:
-            db.session.add(new_item_DB)
+            db.session.add(new_item_db)
             db.session.commit
             return redirect('/')
         except:
             return "Failed to find"
     else:
-        return render_template('home.html')
+        list = Item.query.order_by(Item.item_id).all()
+        return render_template('home.html', list=list)
 
 
 if __name__ == "__main__":

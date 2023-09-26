@@ -14,15 +14,17 @@
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
+            {% for item in list %}
             <tr>
-                <td></td>
-                <td></td>
+                <td>{{ item.item_name }}</td>
+                <td>{{ item.item_status }}</td>
                 <td>
                     <a href="">DELETE</a>
                     <br>
                     <a href="">UPDATE</a>
                 </td>
             </tr>
+            {% endfor %}
         </table>
 
         <form action="/" method="POST">
