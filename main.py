@@ -28,8 +28,8 @@ def home():
         except:
             return "Failed to find"
     else:
-        list = Item.query.order_by(Item.item_id).all()
-        return render_template('home.html', list=list)
+        item_list = Item.query.order_by(Item.item_id).all()
+        return render_template('home.html', item_list=item_list)
 
 
 if __name__ == "__main__":
