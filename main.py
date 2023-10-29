@@ -7,9 +7,9 @@ db = SQLAlchemy(app)
 
 
 class Item(db.Model):
-    item_id = db.Column(db.Integer, primary_key=True)
-    item_name = db.Column(db.String(200), nullable=False)
-    item_status = db.Column(db.String(50), nullable=False)
+    itemID = db.Column(db.Integer, primary_key=True)
+    itemName = db.Column(db.String(200), nullable=False)
+    itemStatus = db.Column(db.String(50), nullable=False)
 
     def __repr__(self):
         return '<Task %r>' % self.item_id
@@ -28,7 +28,7 @@ def home():
         except:
             return "Failed to find"
     else:
-        item_list = Item.query.order_by(Item.item_id).all()
+        item_list = Item.query.order_by(Item.itemID).all()
         return render_template('home.html', item_list=item_list)
 
 
